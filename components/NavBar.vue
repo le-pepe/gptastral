@@ -62,7 +62,7 @@ const components: { title: string, href: string, description: string }[] = [
             <div class="p-2">
               <SignedOut>
                 <SignInButton>
-                  <Button>Login</Button>
+                  <Button variant="ghost">Login</Button>
                 </SignInButton>
               </SignedOut>
               <SignedIn>

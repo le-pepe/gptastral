@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "GPTASTRAL - Tu Asistente de Lectura de Tarot, Runas y Astrología Potenciado por IA",
+    "description": "Desvela los misterios con GPTASTRAL",
+    "keywords": "GPTASTRAL, IA, chat, tarot, runas, astrología, astral, astralai, chat astral, IA astral, chatbot astral, chat IA astral, chatbot IA astral, chatgpt chatbot IA astral, gpt chatbot IA astral, openai chatbot IA astral, deepseek chatbot IA astral, deepseek chat chatbot IA astral"
+  },
+  "hero": {
+    "title": "Desvela los Misterios con GPTASTRAL",
+    "description": "Conéctate con el cosmos como nunca antes. Pregunta a nuestra IA sobre el viaje de tu vida y recibe perspectivas a través de lecturas de tarot, interpretaciones de runas y cartas astrológicas personalizadas. Transforma tus preguntas en guía cósmica."
+  },
+  "callToAction": {
+    "title": "Inicia Tu Viaje",
+    "description": "Conéctate con el cosmos como nunca antes. Pregunta a nuestra IA sobre el viaje de tu vida y recibe perspectivas a través de lecturas de tarot, interpretaciones de runas y cartas astrológicas personalizadas. Transforma tus preguntas en guía cósmica."
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "description": "Inicia sesión en tu cuenta para comenzar tu viaje con GPTASTRAL."
+  },
+  "register": {
+    "title": "Registrarse",
+    "description": "Crea una cuenta para comenzar tu viaje con GPTASTRAL."
+  },
+  "chat": {
+    "textarea": {
+      "placeholder": "Pregunta lo que quieras..."
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 GPTASTRAL. Creado con ❤️ por {'@'}le-pepe"
+  }
+}

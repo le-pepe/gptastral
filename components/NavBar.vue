@@ -42,7 +42,8 @@ const components: { title: string, href: string, description: string }[] = [
 </script>
 
 <template>
-  <header class="w-full px-4 border-grid sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <header
+      class="w-full px-4 py-2 border-grid sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <div class="container mx-auto flex justify-between">
 
       <NavigationMenu>
@@ -53,22 +54,22 @@ const components: { title: string, href: string, description: string }[] = [
         </NavigationMenuList>
       </NavigationMenu>
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList class="flex-grow gap-2">
           <NavigationMenuItem>
-            <DarkMode />
+            <LanguageSwitcher/>
           </NavigationMenuItem>
           <NavigationMenuItem>
-
-            <div class="p-2">
+            <DarkMode/>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
               <SignedOut>
                 <SignInButton>
-                  <Button variant="ghost">Login</Button>
+                  <Button variant="ghost">{{ $t('login.title') }}</Button>
                 </SignInButton>
               </SignedOut>
               <SignedIn>
-                <UserButton />
+                <UserButton/>
               </SignedIn>
-            </div>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

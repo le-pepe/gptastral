@@ -119,12 +119,11 @@ const disableSendButton = computed(() => message.value.trim().length === 0)
         </div>
       </div>
 
-      <!-- Área de input fija y centrada - Versión corregida -->
       <div class="absolute bottom-0 left-0 right-0">
         <div class="mx-auto max-w-3xl w-full py-3">
           <div class="relative rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <Textarea
-                placeholder="Ask whatever you want..."
+                :placeholder="$t('chat.textarea.placeholder')"
                 class="w-full pr-12 max-h-[200px] resize-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                 @keydown="handleSubmit"
                 v-model="message"

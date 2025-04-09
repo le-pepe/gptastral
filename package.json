@@ -12,6 +12,7 @@
   "dependencies": {
     "@clerk/nuxt": "^1.4.6",
     "@nuxt/icon": "1.11.0",
+    "@nuxtjs/i18n": "9.5.3",
     "@tailwindcss/vite": "^4.1.0",
     "@vueuse/core": "^13.0.0",
     "class-variance-authority": "^0.7.1",

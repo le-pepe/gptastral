@@ -28,19 +28,7 @@ const newChat = async () => {
 <template>
   <div class="min-h-screen flex flex-col justify-between">
     <!-- Header -->
-    <header class="shadow">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-6">
-          <div>
-            <h1 class="text-2xl font-bold">GPTASTRAL</h1>
-          </div>
-          <nav>
-            <DarkMode />
-            <Button variant="secondary" @click="navigateTo('/login')">Login</Button>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <NavBar />
 
     <!-- Main Content -->
     <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8">

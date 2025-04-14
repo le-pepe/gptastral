@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import AppSidebar from '@/components/AppSidebar.vue'
 import Loading from "@/components/Loading.vue";
-import NavBar from "@/components/NavBar.vue";
 import {Button} from "@/components/ui/button";
-import {SidebarProvider} from '@/components/ui/sidebar'
 import {Textarea} from "@/components/ui/textarea";
+
+definePageMeta({
+  layout: 'chat'
+})
 
 const { userId } = useAuth()
 
@@ -109,10 +110,7 @@ const disableSendButton = computed(() => message.value.trim().length === 0)
 </script>
 
 <template>
-  <SidebarProvider>
-    <AppSidebar/>
-    <div class="flex flex-col h-screen w-full relative">
-      <NavBar/>
+
 
       <!-- Contenedor principal de mensajes -->
       <div
@@ -164,8 +162,6 @@ const disableSendButton = computed(() => message.value.trim().length === 0)
           </div>
         </div>
       </div>
-    </div>
-  </SidebarProvider>
 </template>
 
 <style>

@@ -7,19 +7,14 @@ const newChat = async () => {
   if (!isSignedIn.value) {
     return navigateTo('/login')
   }
-  const {data, error} = await useFetch('/api/chat/new', {
+  const res = await $fetch('/api/chat/new', {
     method: 'POST'
   })
 
-  if (error.value) {
-    console.error(error.value)
-    return
-  }
-  if (data.value) {
-    if (data.value.success) {
-      navigateTo(`/chat/${data.value.data.uuid}`)
-    }
-    return
+  if (res.success) {
+    navigateTo(`/chat/${res?.data?.uuid}`)
+  } else {
+    console.log(res)
   }
 }
 
@@ -37,7 +32,7 @@ const newChat = async () => {
         <p class="mb-8 max-w-3xl mx-auto">
           {{ $t('hero.description') }}
         </p>
-        <Button @click="navigateTo('/login')">{{ $t('callToAction.title') }}</Button>
+        <Button @click="newChat">{{ $t('callToAction.title') }}</Button>
       </div>
     </main>
 

@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       'shadcn-nuxt',
       '@nuxtjs/color-mode',
       '@clerk/nuxt',
-      '@nuxtjs/i18n'
+      '@nuxtjs/i18n',
     ],
     css: ['~/assets/css/tailwind.css'],
     vite: {
@@ -25,7 +25,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         deepseekApiKey: '',
-        openaiApiKey: ''
+        openaiApiKey: '',
+        databaseUrl: '',
     },
     clerk: {
         skipServerMiddleware: true,

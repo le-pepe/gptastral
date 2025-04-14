@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import {NavigationMenu, NavigationMenuItem, NavigationMenuList,} from '@/components/ui/navigation-menu'
 import {Button} from "~/components/ui/button";
+import {SidebarTrigger} from "~/components/ui/sidebar";
+
+const isChat = ref(false)
+
+const route = useRoute()
+
+if (route.path.startsWith('/chat')) {
+  isChat.value = true
+}
 
 const components: { title: string, href: string, description: string }[] = [
   {
@@ -44,12 +53,13 @@ const components: { title: string, href: string, description: string }[] = [
 <template>
   <header
       class="w-full px-4 py-2 border-grid sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <div class="container mx-auto flex justify-between">
+    <div class="flex justify-between">
 
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <span class="font-bold">GPTASTRAL</span>
+            <SidebarTrigger v-if="isChat"/>
+            <NuxtLink to="/" class="font-bold m-4" v-else>GPTASTRAL</NuxtLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

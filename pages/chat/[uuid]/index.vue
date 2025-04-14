@@ -26,6 +26,29 @@ const waitingResponse = ref(false)
 const route = useRoute()
 const uuid = route.params.uuid
 
+onMounted(() => {
+  if (route.params.uuid) {
+    getChat()
+  }
+})
+
+const getChat = async () => {
+  const res = await $fetch('/api/chat', {
+    method: 'POST',
+    body: {
+      uuid: uuid
+    }
+  })
+  if (res.success) {
+    messages.value = res.data.messages.map((c: any) => ({
+      content: c.message!,
+      id: c.id,
+      role: c.role
+    }))
+    scrollToBottom()
+  }
+}
+
 const pushMessage = async (role: 'user' | 'assistant') => {
   const trimmedMessage = message.value.trim()
   if (!trimmedMessage) return
@@ -87,7 +110,7 @@ const disableSendButton = computed(() => message.value.trim().length === 0)
 
 <template>
   <SidebarProvider>
-<!--    <AppSidebar/>-->
+    <AppSidebar/>
     <div class="flex flex-col h-screen w-full relative">
       <NavBar/>
 

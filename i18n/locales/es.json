@@ -23,7 +23,8 @@
   "chat": {
     "textarea": {
       "placeholder": "Pregunta lo que quieras..."
-    }
+    },
+    "title": "Inicia un nuevo chat con nuestra IA"
   },
   "footer": {
     "copyright": "© 2025 GPTASTRAL. Creado con ❤️ por {'@'}le-pepe"

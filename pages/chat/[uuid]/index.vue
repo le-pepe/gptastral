@@ -63,18 +63,17 @@ const sendMessage = async (role: 'user' | 'assistant', content: string) => {
 
   try {
     waitingResponse.value = true
-    const { data, error } = await useFetch('/api/chat/read', {
+    const res = await $fetch('/api/chat/read', {
       method: 'POST',
       body: { message: content, uuid }
     })
-    if (error.value) console.error(error.value)
-    if (data.value?.success) {
+    if (res.success) {
       messages.value.push({
         role: 'assistant',
         content: '',
         id: Math.random().toString()
       })
-      for (const c of data.value.data) {
+      for (const c of res.data) {
         setTimeout(() => {
           messages.value[messages.value.length - 1].content += c
         }, 1000)

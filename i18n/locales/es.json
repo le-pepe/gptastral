@@ -1,20 +1,26 @@
 {
   "meta": {
-    "title": "GPTASTRAL - Tu Asistente de Lectura de Tarot, Runas y Astrología Potenciado por IA",
-    "description": "Desvela los misterios con GPTASTRAL",
-    "keywords": "GPTASTRAL, IA, chat, tarot, runas, astrología, astral, astralai, chat astral, IA astral, chatbot astral, chat IA astral, chatbot IA astral, chatgpt chatbot IA astral, gpt chatbot IA astral, openai chatbot IA astral, deepseek chatbot IA astral, deepseek chat chatbot IA astral"
+    "title": "GPTASTRAL - Tu asistente de lecturas de Tarot, Runas y Carta Astral impulsado por IA",
+    "description": "Descubre los misterios con GPTASTRAL",
+    "keywords": "GPTASTRAL, IA, chat, tarot, runas, astrología, astral, astralai, chat astral, astral ia, chatbot astral, chat astral ia, chatbot astral ia, chatbot astral ia chatgpt, chatbot astral ia gpt, chatbot astral ia openai, chatbot astral ia deepseek, chatbot astral ia deepseek chat"
   },
   "hero": {
-    "title": "Desvela los Misterios con GPTASTRAL",
-    "description": "Conéctate con el cosmos como nunca antes. Pregunta a nuestra IA sobre el viaje de tu vida y recibe perspectivas a través de lecturas de tarot, interpretaciones de runas y cartas astrológicas personalizadas. Transforma tus preguntas en guía cósmica."
+    "title": "Descubre los Misterios con GPTASTRAL",
+    "description": "Conéctate con el cosmos como nunca antes. Pregunta a nuestra IA sobre tu camino de vida y recibe orientación a través de lecturas de tarot, interpretaciones de runas y cartas astrales personalizadas. Transforma tus preguntas en guía cósmica."
   },
   "callToAction": {
-    "title": "Inicia Tu Viaje",
-    "description": "Conéctate con el cosmos como nunca antes. Pregunta a nuestra IA sobre el viaje de tu vida y recibe perspectivas a través de lecturas de tarot, interpretaciones de runas y cartas astrológicas personalizadas. Transforma tus preguntas en guía cósmica."
+    "chat": {
+      "title": "Iniciar un Chat",
+      "description": "Habla directamente con nuestra IA. Pregunta sobre tu camino, tus dudas o cualquier cosa que sientas explorar."
+    },
+    "interactive": {
+      "title": "Descubre Tu Camino",
+      "description": "Sumérgete en una experiencia guiada. Elige una tirada de tarot, consulta las runas o explora tu carta astral para obtener una visión más profunda."
+    }
   },
   "login": {
     "title": "Iniciar Sesión",
-    "description": "Inicia sesión en tu cuenta para comenzar tu viaje con GPTASTRAL."
+    "description": "Accede a tu cuenta para comenzar tu viaje con GPTASTRAL."
   },
   "register": {
     "title": "Registrarse",
@@ -22,7 +28,7 @@
   },
   "chat": {
     "textarea": {
-      "placeholder": "Pregunta lo que quieras..."
+      "placeholder": "Pregunta lo que desees..."
     },
     "title": "Inicia un nuevo chat con nuestra IA"
   },
@@ -32,5 +38,59 @@
   "today": "Hoy",
   "yesterday": "Ayer",
   "sevendaysago": "Últimos 7 días",
-  "thirtydaysago": "Últimos 30 días"
+  "thirtydaysago": "Últimos 30 días",
+  "interactive": {
+    "options": {
+      "tarot": "Tarot",
+      "runes": "Runas",
+      "astral": "Carta Astral"
+    },
+    "steps": {
+      "1": "Paso 1: Elige un tipo de lectura",
+      "2": {
+        "tarot": "Paso 2: Elige un tipo de tirada",
+        "runes": "Paso 2: Elige un tipo de tirada",
+        "astral": "Paso 2: Completa tu lugar y fecha de nacimiento"
+      },
+      "3": "Paso 3: Pregunta algo a nuestra IA"
+    },
+    "sendButton": "Preguntar"
+  },
+  "spreads": {
+    "tarot": {
+      "single_card": "Carta única",
+      "past_present_future": "Pasado, presente y futuro",
+      "simple_cross": "Cruz simple",
+      "life_purpose": "Propósito de vida",
+      "soul_path": "Camino del alma",
+      "personal_shadow": "Sombra personal",
+      "inner_mirror": "Espejo interno",
+      "heros_journey": "Viaje del héroe",
+      "undefined": "Selecciona una tirada"
+    }
+  },
+  "cards": {
+    "0": "El Loco",
+    "1": "El Mago",
+    "2": "La Sacerdotisa",
+    "3": "La Emperatriz",
+    "4": "El Emperador",
+    "5": "El Sumo Sacerdote",
+    "6": "Los Enamorados",
+    "7": "El Carro",
+    "8": "La Fuerza",
+    "9": "El Ermitaño",
+    "10": "La Rueda de la Fortuna",
+    "11": "La Justicia",
+    "12": "El Colgado",
+    "13": "La Muerte",
+    "14": "La Templanza",
+    "15": "El Diablo",
+    "16": "La Torre",
+    "17": "La Estrella",
+    "18": "La Luna",
+    "19": "El Sol",
+    "20": "El Juicio",
+    "21": "El Mundo"
+  }
 }

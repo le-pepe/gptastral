@@ -3,13 +3,19 @@ import {NavigationMenu, NavigationMenuItem, NavigationMenuList,} from '@/compone
 import {Button} from "~/components/ui/button";
 import {SidebarTrigger} from "~/components/ui/sidebar";
 
-const isChat = ref(false)
+const props = defineProps({
+  showSidebarToggle: {
+    type: Boolean,
+    default: true,
+  }
+})
 
 const route = useRoute()
 
-if (route.path.startsWith('/chat')) {
-  isChat.value = true
-}
+
+const isChat = computed(() => {
+  return route.path.startsWith('/chat')
+})
 
 const components: { title: string, href: string, description: string }[] = [
   {
@@ -58,8 +64,8 @@ const components: { title: string, href: string, description: string }[] = [
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <SidebarTrigger v-if="isChat"/>
-            <NuxtLink to="/" class="font-bold m-4" v-else>GPTASTRAL</NuxtLink>
+            <SidebarTrigger v-if="isChat && showSidebarToggle"/>
+            <NuxtLink to="/" class="font-bold m-4" v-else-if="!isChat">GPTASTRAL</NuxtLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

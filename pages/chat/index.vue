@@ -27,7 +27,7 @@ const handleSendButtonClick = () => {
 <template>
   <div class="flex-1 flex flex-col p-4 justify-center items-center h-full gap-4">
     <h1 class="text-2xl">{{ $t("chat.title") }}</h1>
-    <div class="relative rounded-lg shadow-sm border border-primary w-full max-w-3xl">
+    <div class="relative rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 w-full max-w-3xl">
       <Textarea
           :placeholder="$t('chat.textarea.placeholder')"
           class="w-full pr-12 max-h-[200px] resize-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0"

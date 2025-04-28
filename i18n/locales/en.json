@@ -50,7 +50,7 @@
       "2": {
         "tarot": "Step 2: Choose a spread type",
         "runes": "Step 2: Choose a spread type",
-        "astral": "Step 2: Complete your place and date of birth"
+        "astral": "Step 2: Enter your place and date of birth"
       },
       "3": "Step 3: Ask something to our AI"
     },
@@ -67,6 +67,16 @@
       "inner_mirror": "Inner Mirror",
       "heros_journey": "Hero's Journey",
       "undefined": "Select a spread"
+    },
+    "runes": {
+      "single_rune": "Single Rune",
+      "three_runes": "Three Runes",
+      "simple_cross": "Simple Cross",
+      "odin_runes": "Odin's Runes",
+      "circle_casting": "Circle Casting",
+      "nine_worlds": "Nine Worlds Spread",
+      "past_present_future": "Past, Present and Future",
+      "shadow_work": "Shadow Work Spread"
     }
   },
   "cards": {

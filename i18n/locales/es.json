@@ -50,7 +50,7 @@
       "2": {
         "tarot": "Paso 2: Elige un tipo de tirada",
         "runes": "Paso 2: Elige un tipo de tirada",
-        "astral": "Paso 2: Completa tu lugar y fecha de nacimiento"
+        "astral": "Paso 2: Ingresa tu lugar y fecha de nacimiento"
       },
       "3": "Paso 3: Pregunta algo a nuestra IA"
     },
@@ -67,6 +67,16 @@
       "inner_mirror": "Espejo interno",
       "heros_journey": "Viaje del héroe",
       "undefined": "Selecciona una tirada"
+    },
+    "runes": {
+      "single_rune": "Runa única",
+      "three_runes": "Tres runas",
+      "simple_cross": "Cruz simple",
+      "odin_runes": "Runas de Odín",
+      "circle_casting": "Tirada en círculo",
+      "nine_worlds": "Tirada de los Nueve Mundos",
+      "past_present_future": "Pasado, presente y futuro",
+      "shadow_work": "Tirada de trabajo de sombra"
     }
   },
   "cards": {

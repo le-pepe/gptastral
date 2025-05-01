@@ -6,10 +6,17 @@ import AstralIcon from "~/components/icons/AstralIcon.vue";
 import RuneIcon from "~/components/icons/RuneIcon.vue";
 import TarotIcon from "~/components/icons/TarotIcon.vue";
 import {Textarea} from "~/components/ui/textarea";
+import {Popover, PopoverContent, PopoverTrigger} from '~/components/ui/popover'
+import {cn} from "~/lib/utils";
+import {Calendar as CalendarIcon} from 'lucide-vue-next'
+import {DateFormatter, type DateValue, getLocalTimeZone, today,} from '@internationalized/date'
+import CalendarSelector from "~/components/ui/calendar/CalendarSelector.vue";
 
 definePageMeta({
   layout: 'interactive'
 })
+
+
 
 const selectedTarotSpread = ref()
 const selectedRuneSpread = ref()
@@ -19,6 +26,13 @@ const astralData = ref({
 })
 
 const selectedRead = ref()
+
+const df = computed(() => {
+  const locale = useI18n().locale.value
+  return new DateFormatter(locale, {
+    dateStyle: 'long'
+  })
+})
 
 const tarotSpreads = [
   "single_card",
@@ -51,14 +65,25 @@ watch(selectedRead, () => {
     //todo: reset selectedRuneSpread
     selectedRuneSpread.value = undefined
   }
+  if (selectedRead.value !== 'astral') {
+    astralData.value = {
+      date: '',
+      place: ''
+    }
+  }
 })
 
 const step2IsCompleted = computed(() => {
   return (selectedRead.value === 'tarot' && selectedTarotSpread.value !== undefined)
       || (selectedRead.value === 'runes' && selectedRuneSpread.value !== undefined)
-      || (selectedRead.value === 'astral' && astralData.value.date !== '' && astralData.value.place !== '');
+      || (selectedRead.value === 'astral' && astralData.value.date && astralData.value.place !== '');
 })
 
+const date = ref<DateValue>(today(getLocalTimeZone()))
+
+watch(date, () => {
+  astralData.value.date = date.value.toString()
+})
 
 </script>
 
@@ -112,6 +137,25 @@ const step2IsCompleted = computed(() => {
 
     <section class="w-full flex flex-col gap-4" v-if="selectedRead === 'astral'">
       <h1 class="font-bold text-2xl">{{ $t('interactive.steps.2.' + selectedRead) }}</h1>
+      <div class="flex flex-row">
+        <Popover>
+          <PopoverTrigger as-child>
+            <Button
+                variant="outline"
+                :class="cn(
+          'w-full justify-start text-left font-normal bg-card',
+          !date && 'text-muted-foreground',
+        )"
+            >
+              <CalendarIcon class="mr-2 h-4 w-4" />
+              {{ date ? df.format(date.toDate(getLocalTimeZone())) : "Pick a date" }}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent class="w-auto p-0">
+            <CalendarSelector v-model="date" />
+          </PopoverContent>
+        </Popover>
+      </div>
     </section>
 
     <section class="w-full flex flex-col gap-4" v-if="step2IsCompleted">

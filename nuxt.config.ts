@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     ],
     css: ['~/assets/css/tailwind.css'],
     vite: {
+        server: {
+            allowedHosts: true
+        },
         plugins: [
             tailwindcss()
         ]

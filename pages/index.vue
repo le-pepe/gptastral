@@ -43,7 +43,7 @@ const goToInteractive = async () => {
           <Button @click="newChat">
             {{ $t('callToAction.chat.title') }}
           </Button>
-          <Button @click="goToInteractive" variant="secondary">
+          <Button @click="goToInteractive" variant="secondary" v-if="false">
             {{ $t('callToAction.interactive.title') }}
           </Button>
         </div>

@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@clerk/nuxt": "^1.4.6",
+    "@clerk/nuxt": "^1.6.2",
     "@internationalized/date": "^3.8.0",
     "@nuxt/icon": "1.11.0",
     "@nuxtjs/i18n": "9.5.3",

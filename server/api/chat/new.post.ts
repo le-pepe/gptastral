@@ -1,16 +1,17 @@
 import {randomUUID} from "uncrypto";
 import {tables} from "~/server/utils/drizzle";
+import OpenAI from "openai";
 
 export default defineEventHandler(async (event) => {
 
     try {
         const uuid = randomUUID();
-        const { userId } = event.context.auth;
+        const { userId } = event.context.auth();
 
-        const res = await useDrizzle().insert(tables.chats).values({
+
+        await useDrizzle().insert(tables.chats).values({
             uuid,
             user_id: userId,
-
         })
 
         return {

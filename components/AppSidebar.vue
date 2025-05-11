@@ -24,10 +24,11 @@ const currentPage = ref(1)
 const hasMore = ref(true)
 const LIMIT = 30
 const {t} = useI18n()
+const nuxtApp = useNuxtApp()
+const shouldGetChats = ref(false)
 
 const getChats = async (page = 1) => {
   if (loading.value || !hasMore.value) return
-
   loading.value = true
   try {
     const res = await $fetch('/api/chat/list', {
@@ -80,6 +81,18 @@ const chatLink = (uuid: string) => {
   return `/chat/${uuid}`
 }
 
+
+nuxtApp.hook('chat:created', () => {
+  shouldGetChats.value = true
+})
+
+watch(shouldGetChats, () => {
+  if (shouldGetChats.value) {
+    hasMore.value = true
+    getChats()
+    shouldGetChats.value = false
+  }
+})
 
 </script>
 

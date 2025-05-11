@@ -11,6 +11,7 @@ const message = ref("")
 const handleSubmit = (e: KeyboardEvent) => {
   if (e.key.toLowerCase() === 'enter' && !e.shiftKey) {
     e.preventDefault()
+    handleSendButtonClick()
   }
 }
 
@@ -18,7 +19,27 @@ const disableSendButton = computed(() => {
   return message.value.trim().length == 0
 })
 
-const handleSendButtonClick = () => {
+const handleSendButtonClick = async () => {
+  if (message.value.trim().length == 0) return
+  if (disableSendButton.value) return
+  const res = await $fetch('/api/chat/new', { method: 'POST' })
+  const nuxtApp = useNuxtApp();
+
+
+
+  if (res.success) {
+    navigateTo(`/chat/${res.data.uuid}`).then(async (a) => {
+
+      await nuxtApp.callHook('chat:add:message', {
+        message: message.value
+      })
+    })
+    return
+  }
+}
+
+const sendMessage = () => {
+  if (message.value.trim().length == 0) return
 
 }
 

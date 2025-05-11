@@ -26,6 +26,16 @@ const waitingResponse = ref(false)
 
 const route = useRoute()
 const uuid = route.params.uuid
+const nuxtApp = useNuxtApp();
+const hasChatFromHook = ref(false);
+
+nuxtApp.hook('chat:add:message', (m) => {
+  hasChatFromHook.value = true;
+  sendMessage('user', m.message)
+  .then(() => {
+    nuxtApp.callHook('chat:created')
+  })
+})
 
 onMounted(() => {
   if (route.params.uuid) {
@@ -34,21 +44,30 @@ onMounted(() => {
 })
 
 const getChat = async () => {
+  if (hasChatFromHook.value) return;
   const res = await $fetch('/api/chat', {
     method: 'POST',
     body: {
       uuid: uuid
     }
   })
+  if (hasChatFromHook.value) return;
   if (res.success) {
     messages.value = res.data.messages.map((c: any) => ({
       content: c.message!,
       id: c.id,
       role: c.role
     }))
+
+    // Si el chat es nuevo, enviar el primer mensaje automáticamente
+    if (messages.value.length == 1 && messages.value[0].role === 'user') {
+      const firstMessage = res.data.messages[0].message;
+      await sendMessage("user", firstMessage, true);
+    }
     scrollToBottom()
   }
 }
+
 
 const pushMessage = async (role: 'user' | 'assistant') => {
   const trimmedMessage = message.value.trim()
@@ -56,36 +75,41 @@ const pushMessage = async (role: 'user' | 'assistant') => {
   await sendMessage(role, trimmedMessage)
 }
 
-const sendMessage = async (role: 'user' | 'assistant', content: string) => {
-  messages.value.push({ role, content, id: Math.random().toString() })
-  message.value = ''
-  scrollToBottom()
+const sendMessage = async (role: 'user' | 'assistant', content: string, isInitial = false) => {
+  // Solo agregar el mensaje a la lista si no es el inicial enviado automáticamente
+  if (!isInitial) {
+    messages.value.push({ role, content, id: Math.random().toString() });
+    message.value = '';
+    scrollToBottom();
+  }
 
   try {
-    waitingResponse.value = true
+    waitingResponse.value = true;
     const res = await $fetch('/api/chat/read', {
       method: 'POST',
       body: { message: content, uuid }
-    })
+    });
+
     if (res.success) {
       messages.value.push({
         role: 'assistant',
         content: '',
         id: Math.random().toString()
-      })
+      });
       for (const c of res.data) {
         setTimeout(() => {
-          messages.value[messages.value.length - 1].content += c
-        }, 1000)
+          messages.value[messages.value.length - 1].content += c;
+        }, 1000);
       }
-      scrollToBottom()
+      scrollToBottom();
     }
   } catch (err) {
-    console.error('An error occurred:', err)
+    console.error('An error occurred:', err);
   } finally {
-    waitingResponse.value = false
+    waitingResponse.value = false;
   }
-}
+};
+
 
 const scrollToBottom = () => {
   nextTick(() => chatContainer.value?.scrollTo({

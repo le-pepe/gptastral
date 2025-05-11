@@ -37,6 +37,7 @@ export default defineEventHandler(async (event) => {
                 )
             );
 
+        //@ts-ignore
         messages = messages.map(m => ({
             role: m.role === 'user' ? 'user' : (m.role === 'assistant' ? 'assistant' : 'system'),
             content: m.message
@@ -56,7 +57,7 @@ export default defineEventHandler(async (event) => {
 
         let chatMessages = [
             { role: "system", content: prompt },
-            ...messages.map(m => ({ role: m.role, content: m.content })),
+            ...messages.map(m => ({ role: m.role, content: m.content ?? m.message })),
             { role: 'user', content: message }
         ];
         const completion = await client.chat.completions.create({

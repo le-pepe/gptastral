@@ -1,13 +1,19 @@
 import { clerkMiddleware} from "@clerk/nuxt/server";
 
-export default clerkMiddleware((event) => {
-    const { userId } = event.context.auth;
+export default clerkMiddleware(async (event) => {
+    const {userId} = event.context.auth;
 
-    const isProtected = event.path.startsWith("/api");
-    if (isProtected && !userId) {
-        throw createError({
-            statusCode: 401,
-            statusMessage: "Unauthorized",
-        });
+    if (!userId) {
+        if (event.path.startsWith("/chat")) {
+            return await sendRedirect(event,'/login', 401)
+        }
+        const isProtected = event.path.startsWith("/api");
+        if (isProtected) {
+            throw createError({
+                statusCode: 401,
+                statusMessage: "Unauthorized",
+            });
+        }
+
     }
 })

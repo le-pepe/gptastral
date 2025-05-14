@@ -17,6 +17,16 @@ import {
 } from "~/components/ui/dropdown-menu";
 
 import { Edit, Trash2 } from "lucide-vue-next";
+import {
+  Dialog, DialogClose,
+  DialogContent,
+  DialogDescription, DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "~/components/ui/dialog";
+import {Input} from "~/components/ui/input";
+
 
 const chats = ref<any[]>([])
 const loading = ref(false)
@@ -26,6 +36,16 @@ const LIMIT = 30
 const {t} = useI18n()
 const nuxtApp = useNuxtApp()
 const shouldGetChats = ref(false)
+const openDeleteModal = ref(false)
+const openEditModal = ref(false)
+const chatToDelete = ref<string>()
+const chatToEdit = ref({
+  uuid: '',
+  title: ''
+})
+
+const loadingChatDelete = ref(false)
+const loadingChatEdit = ref(false)
 
 const getChats = async (page = 1) => {
   if (loading.value || !hasMore.value) return
@@ -81,6 +101,49 @@ const chatLink = (uuid: string) => {
   return `/chat/${uuid}`
 }
 
+const deleteModal = (uuid: string) => {
+  openDeleteModal.value = true
+  chatToDelete.value = uuid
+}
+
+const editModal = (uuid: string, title: string) => {
+  chatToEdit.value.uuid = uuid
+  chatToEdit.value.title = title
+  openEditModal.value = true
+}
+
+const deleteChatOk = async () => {
+  loadingChatDelete.value = true
+  const res = await $fetch('/api/chat/delete', {
+    method: 'POST',
+    body: {
+      uuid: chatToDelete.value
+    }
+  })
+  hasMore.value = true
+  await getChats()
+
+  loadingChatDelete.value = false
+  openDeleteModal.value = false
+  chatToDelete.value = ''
+}
+
+const editChatOk = async () => {
+  loadingChatEdit.value = true
+  const res = $fetch('/api/chat/edit', {
+    method: 'POST',
+    body: chatToEdit.value
+  })
+  hasMore.value = true
+  await getChats()
+  loadingChatEdit.value = false
+  openEditModal.value = false
+  chatToEdit.value = {
+    uuid: '',
+    title: ''
+  }
+}
+
 
 nuxtApp.hook('chat:created', () => {
   shouldGetChats.value = true
@@ -94,6 +157,7 @@ watch(shouldGetChats, () => {
   }
 })
 
+
 </script>
 
 <template>
@@ -105,37 +169,36 @@ watch(shouldGetChats, () => {
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarHeader>
-    <SidebarContent @scroll="handleScroll">
+    <SidebarContent @scroll="handleScroll" v-auto-animate>
       <template v-for="(item, index) in chats" :key="index">
         <SidebarGroup v-if="item.length > 0">
           <SidebarGroupLabel>{{ t(index) }}</SidebarGroupLabel>
-          <SidebarMenu>
+          <SidebarMenu v-auto-animate>
             <SidebarMenuItem v-for="chat in item" :key="chat.uuid" class="w-full flex items-center justify-between gap-1">
               <Button variant="secondary" as-child class="justify-start truncate">
                 <NuxtLink :to="chatLink(chat.uuid)" class="w-[80%]" :title="chat.title">
                   <span class="flex-1 truncate">{{ chat.title ?? 'Untitled' }}</span>
                 </NuxtLink>
               </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                  <Button variant="ghost">
-                    <Icon name="mdi:dots-horizontal" class="cursor-pointer" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem class="cursor-pointer">
-                      <Edit />
-                      <span>Rename</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem class="cursor-pointer text-destructive">
-                      <Trash2 class="text-destructive" />
-                      <span>Delete</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
+                <DropdownMenu :modal="false">
+                  <DropdownMenuTrigger as-child>
+                    <Button variant="ghost">
+                      <Icon name="mdi:dots-horizontal" class="cursor-pointer" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem class="cursor-pointer" @click="editModal(chat.uuid, chat.title)">
+                        <Edit />
+                        <span>Rename</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem class="cursor-pointer text-destructive" @click="deleteModal(chat.uuid)">
+                        <Trash2 class="text-destructive" />
+                        <span>Delete</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
@@ -143,6 +206,49 @@ watch(shouldGetChats, () => {
       <div v-if="loading" class="flex justify-center p-4">
         <span class="loading-spinner">Loading...</span>
       </div>
+      <Dialog v-model:open="openDeleteModal">
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            Are you sure do you want to delete this chat?
+          </DialogDescription>
+          <DialogFooter>
+            <DialogClose as-child>
+              <Button variant="secondary">
+                Close
+              </Button>
+            </DialogClose>
+            <Button variant="destructive" @click="deleteChatOk" :disabled="loadingChatDelete">
+              <Icon name="svg-spinners:90-ring-with-bg" v-show="loadingChatDelete" />
+              Delete Chat
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog v-model:open="openEditModal">
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            <Input v-model="chatToEdit.title" placeholder="Enter a new name for this chat" />
+          </DialogDescription>
+          <DialogFooter>
+            <DialogClose as-child>
+              <Button variant="secondary">
+                Close
+              </Button>
+            </DialogClose>
+            <Button @click="editChatOk" :disabled="!chatToEdit.title || loadingChatEdit">
+              <Icon name="svg-spinners:90-ring-with-bg" v-show="loadingChatEdit" />
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </SidebarContent>
     <SidebarFooter />
   </Sidebar>

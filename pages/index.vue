@@ -27,7 +27,7 @@ const goToInteractive = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col justify-between">
+  <div class="min-h-dvh flex flex-col justify-between">
     <!-- Header -->
     <NavBar />
 

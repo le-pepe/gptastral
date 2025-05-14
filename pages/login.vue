@@ -1,11 +1,8 @@
 <script setup lang="ts">
 
-import {randomUUID} from "uncrypto";
-
 const {isSignedIn} = useAuth()
 
-const uuid = randomUUID()
-const url = ref(`/chat/${uuid}`)
+const url = ref(`/chat/`)
 if (isSignedIn.value) {
   navigateTo(url.value)
 }

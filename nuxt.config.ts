@@ -5,11 +5,12 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: {enabled: true},
     modules: [
-      '@nuxt/icon',
-      'shadcn-nuxt',
-      '@nuxtjs/color-mode',
-      '@clerk/nuxt',
-      '@nuxtjs/i18n',
+        '@nuxt/icon',
+        'shadcn-nuxt',
+        '@nuxtjs/color-mode',
+        '@clerk/nuxt',
+        '@nuxtjs/i18n',
+        '@formkit/auto-animate/nuxt'
     ],
     css: ['~/assets/css/tailwind.css'],
     vite: {

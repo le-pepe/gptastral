@@ -21,7 +21,7 @@ export const messages = pgTable("messages", {
     created_at: timestamp("created_at").notNull().defaultNow(),
     chat_id: integer("chat_id")
         .notNull()
-        .references(() => chats.id),
+        .references(() => chats.id, {onDelete: 'cascade'}),
     message: text("message").notNull(),
     user_id: varchar("user_id").notNull(),
     role: varchar("role").notNull(),

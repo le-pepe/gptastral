@@ -91,6 +91,9 @@ const sendMessage = async (role: 'user' | 'assistant', content: string, isInitia
     });
 
     if (res.success) {
+      if (messages.value.length == 1) {
+        await nuxtApp.callHook('chat:created')
+      }
       messages.value.push({
         role: 'assistant',
         content: '',

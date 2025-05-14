@@ -27,7 +27,6 @@ import {
 } from "~/components/ui/dialog";
 import {Input} from "~/components/ui/input";
 
-
 const chats = ref<any[]>([])
 const loading = ref(false)
 const currentPage = ref(1)
@@ -120,11 +119,16 @@ const deleteChatOk = async () => {
       uuid: chatToDelete.value
     }
   })
-  hasMore.value = true
-  await getChats()
-
   loadingChatDelete.value = false
   openDeleteModal.value = false
+  hasMore.value = true
+  await getChats()
+  const route = useRoute()
+  const { uuid } = route.params
+  if (uuid == chatToDelete.value) {
+    await navigateTo('/chat')
+    return
+  }
   chatToDelete.value = ''
 }
 
@@ -134,14 +138,16 @@ const editChatOk = async () => {
     method: 'POST',
     body: chatToEdit.value
   })
-  hasMore.value = true
-  await getChats()
   loadingChatEdit.value = false
   openEditModal.value = false
   chatToEdit.value = {
     uuid: '',
     title: ''
   }
+  hasMore.value = true
+  setTimeout(async() => {
+    await getChats()
+  }, 500)
 }
 
 
@@ -234,7 +240,7 @@ watch(shouldGetChats, () => {
             <DialogTitle>Edit</DialogTitle>
           </DialogHeader>
           <DialogDescription>
-            <Input v-model="chatToEdit.title" placeholder="Enter a new name for this chat" />
+            <Input v-model="chatToEdit.title" placeholder="Enter a new name for this chat" @keydown.enter="editChatOk"/>
           </DialogDescription>
           <DialogFooter>
             <DialogClose as-child>

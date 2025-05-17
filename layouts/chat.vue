@@ -8,7 +8,7 @@ import NavBar from "~/components/NavBar.vue";
 <template>
     <SidebarProvider>
       <AppSidebar />
-      <div class="flex flex-col h-screen w-full relative">
+      <div class="flex flex-col h-dvh w-full relative">
         <NavBar :show-sidebar-toggle="true"/>
         <slot/>
       </div>

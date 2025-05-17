@@ -3,74 +3,74 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.97 0.08 350); /* Rosa pastel claro */
-  --foreground: oklch(0.22 0.05 350); /* Texto oscuro con tono rosado */
-  --card: oklch(0.98 0.07 350);
-  --card-foreground: oklch(0.22 0.05 350);
-  --popover: oklch(0.98 0.07 350);
-  --popover-foreground: oklch(0.22 0.05 350);
-  --primary: oklch(0.85 0.15 345); /* Rosa más saturado */
-  --primary-foreground: oklch(0.15 0.05 350);
-  --secondary: oklch(0.96 0.05 345);
-  --secondary-foreground: oklch(0.22 0.05 350);
-  --muted: oklch(0.96 0.04 345);
-  --muted-foreground: oklch(0.45 0.06 350);
-  --accent: oklch(0.92 0.1 345);
-  --accent-foreground: oklch(0.22 0.05 350);
-  --destructive: oklch(0.65 0.2 20); /* Rojo pastel suave */
-  --destructive-foreground: oklch(0.15 0.05 350);
-  --border: oklch(0.9 0.05 345);
-  --input: oklch(0.9 0.05 345);
-  --ring: oklch(0.7 0.07 345);
-  --chart-1: oklch(0.75 0.18 350);
-  --chart-2: oklch(0.6 0.1 200);
+  --background: oklch(0.97 0.05 350); /* Rosa pastel (saturación reducida para mejor legibilidad) */
+  --foreground: oklch(0.25 0.06 350); /* Texto más oscuro (mejor contraste WCAG) */
+  --card: oklch(0.98 0.05 350); /* Coherencia con --background */
+  --card-foreground: oklch(0.25 0.06 350);
+  --popover: oklch(0.98 0.05 350);
+  --popover-foreground: oklch(0.25 0.06 350);
+  --primary: oklch(0.75 0.18 345); /* Rosa más accesible (luminosidad ajustada) */
+  --primary-foreground: oklch(0.98 0.02 350);
+  --secondary: oklch(0.96 0.04 345);
+  --secondary-foreground: oklch(0.25 0.06 350);
+  --muted: oklch(0.96 0.03 345); /* Saturación reducida */
+  --muted-foreground: oklch(0.45 0.05 350);
+  --accent: oklch(0.92 0.08 345); /* Menos saturado */
+  --accent-foreground: oklch(0.25 0.06 350);
+  --destructive: oklch(0.65 0.22 20); /* Rojo más contrastante */
+  --destructive-foreground: oklch(0.98 0.02 350);
+  --border: oklch(0.9 0.04 345);
+  --input: oklch(0.9 0.04 345);
+  --ring: oklch(0.7 0.06 345);
+  --chart-1: oklch(0.75 0.15 350); /* Saturación uniformizada */
+  --chart-2: oklch(0.6 0.12 200);
   --chart-3: oklch(0.5 0.1 250);
-  --chart-4: oklch(0.85 0.15 90);
-  --chart-5: oklch(0.8 0.15 70);
+  --chart-4: oklch(0.85 0.12 90);
+  --chart-5: oklch(0.8 0.12 70);
   --radius: 0.625rem;
-  --sidebar: oklch(0.98 0.07 350);
-  --sidebar-foreground: oklch(0.22 0.05 350);
-  --sidebar-primary: oklch(0.85 0.15 345);
-  --sidebar-primary-foreground: oklch(0.15 0.05 350);
-  --sidebar-accent: oklch(0.92 0.1 345);
-  --sidebar-accent-foreground: oklch(0.22 0.05 350);
-  --sidebar-border: oklch(0.9 0.05 345);
-  --sidebar-ring: oklch(0.7 0.07 345);
+  --sidebar: oklch(0.98 0.05 350);
+  --sidebar-foreground: oklch(0.25 0.06 350);
+  --sidebar-primary: oklch(0.75 0.18 345);
+  --sidebar-primary-foreground: oklch(0.98 0.02 350);
+  --sidebar-accent: oklch(0.92 0.08 345);
+  --sidebar-accent-foreground: oklch(0.25 0.06 350);
+  --sidebar-border: oklch(0.9 0.04 345);
+  --sidebar-ring: oklch(0.7 0.06 345);
 }
 
 .dark {
-  --background: oklch(0.12 0.05 270); /* Azul noche profundo */
-  --foreground: oklch(0.92 0.05 350); /* Rosa pastel claro para texto */
-  --card: oklch(0.15 0.04 280); /* Ligeramente más claro para tarjetas */
-  --card-foreground: oklch(0.92 0.05 350);
-  --popover: oklch(0.15 0.04 280);
-  --popover-foreground: oklch(0.92 0.05 350);
-  --primary: oklch(0.85 0.15 345); /* Rosa vibrante */
-  --primary-foreground: oklch(0.12 0.05 270);
-  --secondary: oklch(0.25 0.06 300); /* Lila oscuro */
-  --secondary-foreground: oklch(0.92 0.05 350);
-  --muted: oklch(0.25 0.06 300);
-  --muted-foreground: oklch(0.7 0.07 350);
-  --accent: oklch(0.35 0.1 280); /* Toque de violeta */
-  --accent-foreground: oklch(0.92 0.05 350);
-  --destructive: oklch(0.5 0.2 10); /* Rojo oscuro esotérico */
-  --destructive-foreground: oklch(0.92 0.05 350);
-  --border: oklch(0.25 0.05 290);
-  --input: oklch(0.25 0.05 290);
-  --ring: oklch(0.5 0.1 300); /* Anillos con un brillo lila */
-  --chart-1: oklch(0.6 0.2 350);
-  --chart-2: oklch(0.55 0.15 210);
-  --chart-3: oklch(0.4 0.1 250);
-  --chart-4: oklch(0.7 0.2 90);
-  --chart-5: oklch(0.65 0.18 70);
+  --background: oklch(0.15 0.04 270); /* Azul más claro (evita negro puro) */
+  --foreground: oklch(0.95 0.03 350); /* Texto más suave */
+  --card: oklch(0.18 0.04 280);
+  --card-foreground: oklch(0.95 0.03 350);
+  --popover: oklch(0.18 0.04 280);
+  --popover-foreground: oklch(0.95 0.03 350);
+  --primary: oklch(0.8 0.16 345); /* Rosa más vibrante */
+  --primary-foreground: oklch(0.15 0.04 270);
+  --secondary: oklch(0.25 0.05 300); /* Lila menos saturado */
+  --secondary-foreground: oklch(0.95 0.03 350);
+  --muted: oklch(0.25 0.05 300);
+  --muted-foreground: oklch(0.7 0.05 350);
+  --accent: oklch(0.35 0.09 280); /* Violeta más sutil */
+  --accent-foreground: oklch(0.95 0.03 350);
+  --destructive: oklch(0.55 0.23 10); /* Rojo más intenso */
+  --destructive-foreground: oklch(0.95 0.03 350);
+  --border: oklch(0.25 0.04 290);
+  --input: oklch(0.25 0.04 290);
+  --ring: oklch(0.5 0.08 300);
+  --chart-1: oklch(0.6 0.18 350);
+  --chart-2: oklch(0.55 0.14 210);
+  --chart-3: oklch(0.45 0.1 250);
+  --chart-4: oklch(0.7 0.15 90);
+  --chart-5: oklch(0.65 0.15 70);
   --sidebar: oklch(0.18 0.04 280);
-  --sidebar-foreground: oklch(0.92 0.05 350);
-  --sidebar-primary: oklch(0.85 0.15 345);
-  --sidebar-primary-foreground: oklch(0.12 0.05 270);
-  --sidebar-accent: oklch(0.35 0.1 280);
-  --sidebar-accent-foreground: oklch(0.92 0.05 350);
-  --sidebar-border: oklch(0.25 0.05 290);
-  --sidebar-ring: oklch(0.5 0.1 300);
+  --sidebar-foreground: oklch(0.95 0.03 350);
+  --sidebar-primary: oklch(0.8 0.16 345);
+  --sidebar-primary-foreground: oklch(0.15 0.04 270);
+  --sidebar-accent: oklch(0.35 0.09 280);
+  --sidebar-accent-foreground: oklch(0.95 0.03 350);
+  --sidebar-border: oklch(0.25 0.04 290);
+  --sidebar-ring: oklch(0.5 0.08 300);
 }
 
 @theme inline {

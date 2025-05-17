@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
         const { openaiApiKey, deepseekApiKey } = useRuntimeConfig(event);
         const client = new OpenAI({ apiKey: deepseekApiKey, baseURL: 'https://api.deepseek.com/' });
 
-        const { userId } = event.context.auth;
+        const { userId } = event.context.auth();
         const { uuid, message } = await readBody(event);
         const db = useDrizzle();
 

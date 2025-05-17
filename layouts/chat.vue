@@ -13,6 +13,11 @@ import NavBar from "~/components/NavBar.vue";
         <slot/>
       </div>
     </SidebarProvider>
+  <footer class="py-4">
+    <div class="container mx-auto text-center text-sm text-gray-500">
+      {{ $t('footer.copyright') }}
+    </div>
+  </footer>
 </template>
 
 <style scoped>

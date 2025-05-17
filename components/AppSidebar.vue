@@ -196,11 +196,11 @@ watch(shouldGetChats, () => {
                     <DropdownMenuGroup>
                       <DropdownMenuItem class="cursor-pointer" @click="editModal(chat.uuid, chat.title)">
                         <Edit />
-                        <span>Rename</span>
+                        <span>{{$t("sidebar.actions.rename")}}</span>
                       </DropdownMenuItem>
                       <DropdownMenuItem class="cursor-pointer text-destructive" @click="deleteModal(chat.uuid)">
                         <Trash2 class="text-destructive" />
-                        <span>Delete</span>
+                        <span>{{$t("sidebar.actions.delete")}}</span>
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
                   </DropdownMenuContent>
@@ -215,20 +215,20 @@ watch(shouldGetChats, () => {
       <Dialog v-model:open="openDeleteModal">
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete</DialogTitle>
+            <DialogTitle>{{$t("sidebar.modal.delete.title")}}</DialogTitle>
           </DialogHeader>
           <DialogDescription>
-            Are you sure do you want to delete this chat?
+            {{ $t("sidebar.modal.delete.description")}}
           </DialogDescription>
           <DialogFooter>
             <DialogClose as-child>
               <Button variant="secondary">
-                Close
+                {{$t("sidebar.modal.delete.cancelButton")}}
               </Button>
             </DialogClose>
             <Button variant="destructive" @click="deleteChatOk" :disabled="loadingChatDelete">
               <Icon name="svg-spinners:90-ring-with-bg" v-show="loadingChatDelete" />
-              Delete Chat
+              {{loadingChatDelete ? $t("sidebar.modal.delete.loadingOk") : $t("sidebar.modal.delete.okButton")}}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -237,20 +237,20 @@ watch(shouldGetChats, () => {
       <Dialog v-model:open="openEditModal">
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Edit</DialogTitle>
+            <DialogTitle>{{$t("sidebar.modal.rename.title")}}</DialogTitle>
           </DialogHeader>
           <DialogDescription>
-            <Input v-model="chatToEdit.title" placeholder="Enter a new name for this chat" @keydown.enter="editChatOk"/>
+            <Input v-model="chatToEdit.title" :placeholder="$t('sidebar.modal.rename.placeholder')" @keydown.enter="editChatOk"/>
           </DialogDescription>
           <DialogFooter>
             <DialogClose as-child>
               <Button variant="secondary">
-                Close
+                {{$t("sidebar.modal.rename.cancelButton")}}
               </Button>
             </DialogClose>
             <Button @click="editChatOk" :disabled="!chatToEdit.title || loadingChatEdit">
               <Icon name="svg-spinners:90-ring-with-bg" v-show="loadingChatEdit" />
-              Save
+              {{$t(loadingChatEdit ? "sidebar.modal.rename.loadingOk":"sidebar.modal.rename.okButton")}}
             </Button>
           </DialogFooter>
         </DialogContent>

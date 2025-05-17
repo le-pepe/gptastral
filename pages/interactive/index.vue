@@ -11,11 +11,11 @@ import {cn} from "~/lib/utils";
 import {Calendar as CalendarIcon} from 'lucide-vue-next'
 import {DateFormatter, type DateValue, getLocalTimeZone, today,} from '@internationalized/date'
 import CalendarSelector from "~/components/ui/calendar/CalendarSelector.vue";
+import {Input} from "~/components/ui/input";
 
 definePageMeta({
   layout: 'interactive'
 })
-
 
 
 const selectedTarotSpread = ref()
@@ -26,6 +26,7 @@ const astralData = ref({
 })
 
 const selectedRead = ref()
+const query = ref('')
 
 const df = computed(() => {
   const locale = useI18n().locale.value
@@ -85,6 +86,31 @@ watch(date, () => {
   astralData.value.date = date.value.toString()
 })
 
+const send = async () => {
+  const data: any = {
+    reading: selectedRead.value,
+    query: query.value,
+  }
+  if (["tarot", "runes"].includes(selectedRead.value)) {
+    data.data = selectedRead.value === "tarot" ? selectedTarotSpread.value : selectedRuneSpread.value
+  } else {
+    data.data = {
+      birth_place: astralData.value.place,
+      birth_date: astralData.value.date
+    }
+  }
+
+  const res = await $fetch("/api/interactive", {
+    method: 'POST',
+    body: data
+  })
+
+  if (res.success) {
+    await navigateTo("/interactive/" + res.data.uuid)
+  }
+
+}
+
 </script>
 
 <template>
@@ -94,15 +120,15 @@ watch(date, () => {
       <ToggleGroup type="single" size="lg" variant="outline" v-model="selectedRead" class="bg-card w-full">
         <ToggleGroupItem value="tarot" class="size-36 aspect-square flex flex-col">
           {{ $t('interactive.options.tarot') }}
-          <TarotIcon />
+          <TarotIcon/>
         </ToggleGroupItem>
         <ToggleGroupItem value="runes" class="size-36 aspect-square flex flex-col">
           {{ $t('interactive.options.runes') }}
-          <RuneIcon />
+          <RuneIcon/>
         </ToggleGroupItem>
         <ToggleGroupItem value="astral" class="size-36 aspect-square flex flex-col">
           {{ $t('interactive.options.astral') }}
-          <AstralIcon />
+          <AstralIcon/>
         </ToggleGroupItem>
       </ToggleGroup>
     </section>
@@ -147,21 +173,22 @@ watch(date, () => {
           !date && 'text-muted-foreground',
         )"
             >
-              <CalendarIcon class="mr-2 h-4 w-4" />
-              {{ date ? df.format(date.toDate(getLocalTimeZone())) : "Pick a date" }}
+              <CalendarIcon class="mr-2 h-4 w-4"/>
+              {{ date ? df.format(date.toDate(getLocalTimeZone())) : $t("interactive.pickDate") }}
             </Button>
           </PopoverTrigger>
           <PopoverContent class="w-auto p-0">
-            <CalendarSelector v-model="date" />
+            <CalendarSelector v-model="date"/>
           </PopoverContent>
         </Popover>
       </div>
+      <Input :placeholder="$t('interactive.placeBirthPlaceholder')" v-model="astralData.place"/>
     </section>
 
     <section class="w-full flex flex-col gap-4" v-if="step2IsCompleted">
-      <h1 class="font-bold text-2xl">{{$t('interactive.steps.3')}}</h1>
-      <Textarea :placeholder="$t('chat.textarea.placeholder')" class="bg-card" />
-      <Button>Send</Button>
+      <h1 class="font-bold text-2xl">{{ $t('interactive.steps.3') }}</h1>
+      <Textarea :placeholder="$t('chat.textarea.placeholder')" class="bg-card" v-model="query"/>
+      <Button @click="send">{{ $t("interactive.sendButton") }}</Button>
     </section>
   </div>
 </template>

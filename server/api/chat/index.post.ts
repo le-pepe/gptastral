@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
 
     try {
-        const {userId} = event.context.auth;
+        const {userId} = event.context.auth();
 
         const {uuid} = await readBody(event)
 

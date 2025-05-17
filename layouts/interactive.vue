@@ -4,7 +4,7 @@ import NavBar from "~/components/NavBar.vue";
 </script>
 
 <template>
-  <div class="flex flex-col h-screen w-full relative">
+  <div class="flex flex-col h-dvh w-full relative">
     <NavBar :show-sidebar-toggle="false"/>
     <slot/>
   </div>

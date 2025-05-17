@@ -114,7 +114,7 @@ const send = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col min-w-xl mx-auto p-8 gap-8">
+  <div class="flex flex-col min-w-xl mx-auto p-8 gap-8" v-auto-animate>
     <section class="mx-auto flex flex-col gap-4 w-full">
       <h1 class="font-bold text-2xl">{{ $t("interactive.steps.1") }}</h1>
       <ToggleGroup type="single" size="lg" variant="outline" v-model="selectedRead" class="bg-card w-full">

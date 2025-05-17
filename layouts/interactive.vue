@@ -1,6 +1,13 @@
 <script setup lang="ts">
 
 import NavBar from "~/components/NavBar.vue";
+
+const {isSignedIn} = useAuth()
+
+if (!isSignedIn.value) {
+  navigateTo('/login')
+}
+
 </script>
 
 <template>

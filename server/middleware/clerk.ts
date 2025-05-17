@@ -4,7 +4,7 @@ export default clerkMiddleware(async (event) => {
     const {userId} = event.context.auth();
 
     if (!userId) {
-        if (event.path.startsWith("/chat")) {
+        if (event.path.startsWith("/chat") || event.path.startsWith("/interactive")) {
             return await sendRedirect(event,'/login', 401)
         }
         const isProtected = event.path.startsWith("/api");

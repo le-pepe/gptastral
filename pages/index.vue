@@ -1,27 +1,12 @@
 <script setup lang="ts">
 import { Button } from "~/components/ui/button"
 
-const { isSignedIn } = useAuth()
-
 const newChat = async () => {
-  if (!isSignedIn.value) {
-    await navigateTo('/login')
-    return
-  }
-  const res = await $fetch('/api/chat/new', { method: 'POST' })
-
-  if (res.success) {
-    await navigateTo(`/chat/${res.data.uuid}`)
-  } else {
-    console.error(res)
-  }
+  await navigateTo('/chat')
 }
 
 const goToInteractive = async () => {
-  if (!isSignedIn.value) {
-    await navigateTo('/login')
-    return
-  }
+
   await navigateTo('/interactive')
 }
 </script>
@@ -43,7 +28,7 @@ const goToInteractive = async () => {
           <Button @click="newChat">
             {{ $t('callToAction.chat.title') }}
           </Button>
-          <Button @click="goToInteractive" variant="secondary" v-if="false">
+          <Button @click="goToInteractive" variant="secondary">
             {{ $t('callToAction.interactive.title') }}
           </Button>
         </div>

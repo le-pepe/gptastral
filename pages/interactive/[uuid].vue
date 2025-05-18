@@ -68,6 +68,7 @@ const runeSymbols = {
   kaunan: "ᚲ",
   kenaz: "ᚲ",
   gebo: "ᚷ",
+  gebu: "ᚷ",
   wunjo: "ᚹ",
   hagalaz: "ᚺ",
   naudiz: "ᚾ",
@@ -79,6 +80,7 @@ const runeSymbols = {
   sowilo: "ᛋ",
   tiwaz: "ᛏ",
   berkana: "ᛒ",
+  berkano: "ᛒ",
   ehwaz: "ᛖ",
   mannaz: "ᛗ",
   laguz: "ᛚ",
@@ -183,7 +185,7 @@ const capitalizeFirstLetter = (str) => str?.charAt(0).toUpperCase() + str?.slice
 const getCardImage = (cardNumber) => {
   // Asume que tus imágenes están en /public/tarot/
   // con formato como tarot-0.jpg, tarot-1.jpg, etc.
-  return `/images/tarot/${cardNumber}.png`
+  return `https://ik.imagekit.io/kz03bh6qk/tarot/${cardNumber}.png`
 }
 
 const cardNames = {
@@ -359,13 +361,14 @@ onMounted(async () => {
           <!-- Para Runas -->
           <div v-else-if="isRunes" class="flex flex-col items-center mb-12 py-6 gap-8">
             <!-- Runas en círculo -->
-            <div class="relative w-full max-w-md h-80">
-              <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative w-full max-w-md" :class="{ 'h-80': data.output.runes.length > 1 }">
+              <div class="absolute inset-0 flex items-center justify-center" v-if="data.output.runes.length > 1">
                 <div class="w-48 h-48 rounded-full border-2 border-primary/30 animate-pulse-slow"></div>
               </div>
               <div v-for="(rune, index) in data.output.runes" :key="rune"
-                   class="absolute w-16 h-16 perspective-1000 cursor-pointer"
-                   :style="getRunePosition(index, data.output.runes.length)"
+                   class="w-16 h-16 perspective-1000 cursor-pointer"
+                   :class="{'absolute': data.output.runes.length > 1, 'mx-auto': data.output.runes.length == 1}"
+                   :style="data.output.runes.length == 1 ? '' : getRunePosition(index, data.output.runes.length)"
                    @click="flipItem(`rune-${rune}`)">
                 <div class="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d"
                      :class="{'rotate-y-180': flippedItems[`rune-${rune}`]}">

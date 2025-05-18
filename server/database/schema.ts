@@ -49,6 +49,7 @@ export const interactives = pgTable("interactive_chat", {
     input: text("input").notNull(),
     output: text("output"),
     title: text("title"),
+    model: varchar("model", { length: 20 }).default('deepseek'),
 }, (table) => ({
     uuidIdx: index("interactive_uuid_idx").on(table.uuid),
     userIdx: index("interactive_user_idx").on(table.user_id),

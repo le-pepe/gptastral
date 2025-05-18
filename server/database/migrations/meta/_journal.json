@@ -15,6 +15,13 @@
       "when": 1747529319010,
       "tag": "0001_stiff_pestilence",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1747531799630,
+      "tag": "0002_bent_shiva",
+      "breakpoints": true
     }
   ]
 }

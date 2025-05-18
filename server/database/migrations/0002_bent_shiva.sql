@@ -1,0 +1,1 @@
+ALTER TABLE "interactive_chat" ADD COLUMN "model" varchar(20) DEFAULT 'deepseek';

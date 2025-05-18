@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import OpenAI, {ClientOptions} from "openai";
 import {randomUUID} from "uncrypto";
 
 interface UserData {
@@ -12,12 +12,17 @@ interface UserData {
 export default defineEventHandler(async (event) => {
     try {
         const {userId} = event.context.auth();
-        const {reading, data, query } = await readBody(event)
+        const {reading, data, query, model='deepseek' } = await readBody(event)
 
-        const {openaiApiKey} = useRuntimeConfig()
-        const openai = new OpenAI({
-            apiKey: openaiApiKey
-        })
+        const {openaiApiKey, deepseekApiKey} = useRuntimeConfig()
+
+        const openAiConfig: ClientOptions = {
+            apiKey: model === 'deepseek' ? deepseekApiKey : openaiApiKey,
+        }
+        if (model === 'deepseek') {
+            openAiConfig.baseURL = 'https://api.deepseek.com/'
+        }
+        const openai = new OpenAI(openAiConfig)
 
         const prompt = `
 You are a mystical divination assistant specializing in tarot (major arcana only), runes, and astral charts. You respond exclusively with JSON outputs matching the user's requested reading type, returning pure JSON without code block formatting.
@@ -147,7 +152,7 @@ Example correct responses:
         }
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4o",
+            model: model === 'deepseek' ? 'deepseek-chat' : 'gpt-4o',
             messages: [
                 {
                     role: 'assistant',

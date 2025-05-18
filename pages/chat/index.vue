@@ -8,6 +8,14 @@ definePageMeta({
 
 const message = ref("")
 
+const selectedModel = ref('deepseek')
+
+const nuxtApp = useNuxtApp();
+
+nuxtApp.hook('model:selected', (m) => {
+  selectedModel.value = m
+})
+
 const handleSubmit = (e: KeyboardEvent) => {
   if (e.key.toLowerCase() === 'enter' && !e.shiftKey) {
     e.preventDefault()
@@ -22,7 +30,7 @@ const disableSendButton = computed(() => {
 const handleSendButtonClick = async () => {
   if (message.value.trim().length == 0) return
   if (disableSendButton.value) return
-  const res = await $fetch('/api/chat/new', { method: 'POST' })
+  const res = await $fetch('/api/chat/new', { method: 'POST', model: selectedModel.value })
   const nuxtApp = useNuxtApp();
 
 
@@ -66,6 +74,11 @@ const sendMessage = () => {
         <Icon name="mdi:send" class="h-4 w-4"/>
       </Button>
     </div>
+    <footer class="py-4">
+      <div class="container mx-auto text-center text-sm text-gray-500">
+        {{ $t('footer.copyright') }}
+      </div>
+    </footer>
   </div>
 
 </template>

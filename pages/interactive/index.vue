@@ -17,6 +17,12 @@ definePageMeta({
   layout: 'interactive'
 })
 
+const nuxtApp = useNuxtApp();
+const selectedModel = ref('deepseek')
+
+nuxtApp.hook('model:selected', (m: string) => {
+  selectedModel.value = m
+})
 
 const selectedTarotSpread = ref()
 const selectedRuneSpread = ref()
@@ -27,6 +33,8 @@ const astralData = ref({
 
 const selectedRead = ref()
 const query = ref('')
+
+const asking = ref(false)
 
 const df = computed(() => {
   const locale = useI18n().locale.value
@@ -87,9 +95,13 @@ watch(date, () => {
 })
 
 const send = async () => {
+  if (!step2IsCompleted.value) return
+  if (asking.value) return
+  asking.value = true
   const data: any = {
     reading: selectedRead.value,
     query: query.value,
+    model: selectedModel.value,
   }
   if (["tarot", "runes"].includes(selectedRead.value)) {
     data.data = selectedRead.value === "tarot" ? selectedTarotSpread.value : selectedRuneSpread.value
@@ -117,7 +129,7 @@ const send = async () => {
   <div class="flex flex-col min-w-xl mx-auto p-8 gap-8" v-auto-animate>
     <section class="mx-auto flex flex-col gap-4 w-full">
       <h1 class="font-bold text-2xl">{{ $t("interactive.steps.1") }}</h1>
-      <ToggleGroup type="single" size="lg" variant="outline" v-model="selectedRead" class="bg-card w-full">
+      <ToggleGroup type="single" variant="outline" v-model="selectedRead" class="bg-card w-full">
         <ToggleGroupItem value="tarot" class="size-36 aspect-square flex flex-col">
           {{ $t('interactive.options.tarot') }}
           <TarotIcon/>
@@ -188,7 +200,10 @@ const send = async () => {
     <section class="w-full flex flex-col gap-4" v-if="step2IsCompleted">
       <h1 class="font-bold text-2xl">{{ $t('interactive.steps.3') }}</h1>
       <Textarea :placeholder="$t('chat.textarea.placeholder')" class="bg-card" v-model="query"/>
-      <Button @click="send">{{ $t("interactive.sendButton") }}</Button>
+      <Button @click="send" :disabled="asking">
+        <Icon name="svg-spinners:90-ring-with-bg" v-if="asking"/>
+        {{ $t(asking ? "interactive.asking" :"interactive.sendButton") }}
+      </Button>
     </section>
   </div>
 </template>

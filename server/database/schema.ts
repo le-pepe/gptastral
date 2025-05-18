@@ -7,6 +7,7 @@ export const chats = pgTable("chats", {
     uuid: uuid("uuid").notNull().unique(),
     user_id: varchar("user_id", { length: 255 }).notNull(),
     title: text("title"),
+    model: varchar("model", { length: 20 }).default('deepseek'),
 }, (table) => ({
     userIdx: index("chats_user_idx").on(table.user_id),
     createdAtIdx: index("chats_created_at_idx").on(table.created_at),

@@ -41,9 +41,14 @@
   "thirtydaysago": "Last 30 days",
   "interactive": {
     "options": {
-      "tarot": "Tarot",
-      "runes": "Runes",
-      "astral": "Birth Chart"
+      "title": "Explore Our Mystical Readings",
+      "description": "Delve into ancient wisdom and cosmic insights with our specialized readings designed to illuminate your path.",
+      "tarot": "Tarot Reading",
+      "tarotDescription": "Gain clarity on your life's questions and future possibilities with insightful Tarot card interpretations.",
+      "runes": "Runes Consultation",
+      "runesDescription": "Unlock ancient Norse wisdom and guidance for your current challenges through Rune casting.",
+      "astral": "Birth Chart Analysis",
+      "astralDescription": "Discover your unique cosmic blueprint and life's purpose with a personalized astrological Birth Chart."
     },
     "steps": {
       "1": "Step 1: Choose a reading type",
@@ -55,6 +60,7 @@
       "3": "Step 3: Ask something to our AI"
     },
     "sendButton": "Ask",
+    "asking": "Asking...",
     "placeBirthPlaceholder": "Enter your place of birth",
     "pickDate": "Pick a date",
     "readingDetails": {

@@ -41,9 +41,14 @@
   "thirtydaysago": "Últimos 30 días",
   "interactive": {
     "options": {
-      "tarot": "Tarot",
-      "runes": "Runas",
-      "astral": "Carta Natal"
+      "title": "Explora Nuestras Lecturas Místicas",
+      "description": "Adéntrate en la sabiduría ancestral y las percepciones cósmicas con nuestras lecturas especializadas, diseñadas para iluminar tu camino.",
+      "tarot": "Lectura de Tarot",
+      "tarotDescription": "Obtén claridad sobre las preguntas de tu vida y las posibilidades futuras con perspicaces interpretaciones de las cartas del Tarot.",
+      "runes": "Consulta de Runas",
+      "runesDescription": "Desbloquea la antigua sabiduría nórdica y la orientación para tus desafíos actuales a través del lanzamiento de Runas.",
+      "astral": "Análisis de Carta Natal",
+      "astralDescription": "Descubre tu huella cósmica única y el propósito de tu vida con un análisis astrológico personalizado de tu Carta Natal."
     },
     "steps": {
       "1": "Paso 1: Elige un tipo de lectura",
@@ -55,6 +60,7 @@
       "3": "Paso 3: Pregunta algo a nuestra IA"
     },
     "sendButton": "Preguntar",
+    "asking": "Preguntando...",
     "placeBirthPlaceholder": "Ingresa tu lugar de nacimiento",
     "pickDate": "Elige una fecha",
     "readingDetails": {

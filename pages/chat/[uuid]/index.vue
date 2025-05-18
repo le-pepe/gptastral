@@ -149,6 +149,7 @@ const disableSendButton = computed(() => message.value.trim().length === 0)
               :key="m.id"
               class="flex"
               :class="{'justify-end': m.role === 'user', 'justify-start': m.role === 'assistant'}"
+              v-auto-animate
           >
             <div v-if="m.role === 'user'"
                 class="rounded-3xl px-4 py-3 text-sm"
@@ -186,6 +187,11 @@ const disableSendButton = computed(() => message.value.trim().length === 0)
               <Icon name="mdi:send" class="h-4 w-4" />
             </Button>
           </div>
+          <footer class="py-4">
+            <div class="container mx-auto text-center text-sm text-gray-500">
+              {{ $t('footer.copyright') }}
+            </div>
+          </footer>
         </div>
       </div>
 </template>

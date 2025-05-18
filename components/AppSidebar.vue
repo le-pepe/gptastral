@@ -170,8 +170,8 @@ watch(shouldGetChats, () => {
   <Sidebar>
     <SidebarHeader>
       <SidebarMenu>
-        <SidebarMenuItem>
-          <NuxtLink to="/" class="font-bold m-4">GPTASTRAL</NuxtLink>
+        <SidebarMenuItem class="flex items-center">
+          <NuxtLink to="/" class="font-bold m-2">GPTASTRAL</NuxtLink>
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarHeader>

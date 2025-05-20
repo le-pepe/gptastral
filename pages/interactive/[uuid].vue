@@ -409,7 +409,7 @@ onMounted(async () => {
 
           <!-- Resultado para carta astral -->
           <div v-if="isAstral" class="prose prose-invert max-w-none">
-            <div class="p-6 rounded-lg bg-accent border">
+            <div class="p-6 rounded-lg bg-primary/5 border">
               <div v-html="parseMarkdown(data.output.result)"></div>
             </div>
           </div>

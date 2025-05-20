@@ -316,11 +316,11 @@ onMounted(async () => {
                 <div class="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d"
                      :class="{'rotate-y-180': flippedItems[`card-${card}`]}">
                   <!-- Parte trasera -->
-                  <div class="absolute w-full h-full backface-hidden bg-secondary rounded-lg shadow-md border-2 border-card flex items-center justify-center">
+                  <div class="absolute w-full h-full backface-hidden bg-accent rounded-lg shadow-md border-primary border-2 flex items-center justify-center">
                     <div class=" text-4xl">🜁</div>
                   </div>
                   <!-- Parte frontal -->
-                  <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-card rounded-lg overflow-hidden">
+                  <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-accent rounded-lg overflow-hidden">
                     <img
                         :src="getCardImage(card)"
                         :alt="`Carta ${card}`"
@@ -373,11 +373,11 @@ onMounted(async () => {
                 <div class="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d"
                      :class="{'rotate-y-180': flippedItems[`rune-${rune}`]}">
                   <!-- Parte trasera -->
-                  <div class="absolute w-full h-full backface-hidden bg-card border-2 border-primary rounded-lg flex items-center justify-center">
-                    <div class="text-primary text-xl">?</div>
+                  <div class="absolute w-full h-full backface-hidden bg-accent border-2 border-primary rounded-lg flex items-center justify-center">
+                    <div class="text-xl">?</div>
                   </div>
                   <!-- Parte frontal -->
-                  <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-card border-2 border-primary rounded-lg flex items-center justify-center text-3xl font-runes">
+                  <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-accent border-2 border-primary rounded-lg flex items-center justify-center text-3xl font-runes">
                     {{ getRuneSymbol(rune) }}
                   </div>
                 </div>
@@ -409,7 +409,7 @@ onMounted(async () => {
 
           <!-- Resultado para carta astral -->
           <div v-if="isAstral" class="prose prose-invert max-w-none">
-            <div class="p-6 rounded-lg bg-card/50 border">
+            <div class="p-6 rounded-lg bg-accent border">
               <div v-html="parseMarkdown(data.output.result)"></div>
             </div>
           </div>
@@ -437,17 +437,9 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* Estilos para los diferentes tipos de lectura */
-.font-tarot {
-  font-family: 'Cinzel', serif;
-}
 
 .font-runes {
   font-family: 'Segoe UI Historic', 'Noto Sans Runic', sans-serif;
-}
-
-.font-astral {
-  font-family: 'Alegreya', serif;
 }
 
 /* Animación para runas */
@@ -465,11 +457,6 @@ onMounted(async () => {
   color: var(--primary);
 }
 
-/* Espaciado para carta astral */
-.bg-card\/50 {
-  background-color: var(--card);
-  opacity: 0.9;
-}
 .perspective-1000 {
   perspective: 1000px;
 }

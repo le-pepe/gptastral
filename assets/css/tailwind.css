@@ -3,40 +3,44 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.97 0.05 350); /* Rosa pastel (saturación reducida para mejor legibilidad) */
-  --foreground: oklch(0.25 0.06 350); /* Texto más oscuro (mejor contraste WCAG) */
-  --card: oklch(0.98 0.05 350); /* Coherencia con --background */
-  --card-foreground: oklch(0.25 0.06 350);
-  --popover: oklch(0.98 0.05 350);
-  --popover-foreground: oklch(0.25 0.06 350);
-  --primary: oklch(0.75 0.18 345); /* Rosa más accesible (luminosidad ajustada) */
-  --primary-foreground: oklch(0.98 0.02 350);
-  --secondary: oklch(0.96 0.04 345);
-  --secondary-foreground: oklch(0.25 0.06 350);
-  --muted: oklch(0.96 0.03 345); /* Saturación reducida */
-  --muted-foreground: oklch(0.45 0.05 350);
-  --accent: oklch(0.92 0.08 345); /* Menos saturado */
-  --accent-foreground: oklch(0.25 0.06 350);
-  --destructive: oklch(0.65 0.22 20); /* Rojo más contrastante */
-  --destructive-foreground: oklch(0.98 0.02 350);
-  --border: oklch(0.9 0.04 345);
-  --input: oklch(0.9 0.04 345);
-  --ring: oklch(0.7 0.06 345);
-  --chart-1: oklch(0.75 0.15 350); /* Saturación uniformizada */
-  --chart-2: oklch(0.6 0.12 200);
-  --chart-3: oklch(0.5 0.1 250);
-  --chart-4: oklch(0.85 0.12 90);
-  --chart-5: oklch(0.8 0.12 70);
+  --background: oklch(0.98 0.005 300); /* Lunar Dust */
+  --foreground: oklch(0.45 0.02 300);  /* Astral Gray */
+  --card: oklch(0.92 0.01 300);        /* Soft Shadow */
+  --card-foreground: oklch(0.45 0.02 300);
+  --popover: oklch(0.92 0.01 300);
+  --popover-foreground: oklch(0.45 0.02 300);
+  --primary: oklch(0.81 0.16 10);      /* Rose Quartz */
+  --primary-foreground: oklch(0.98 0.005 300);
+  --secondary: oklch(0.8 0.06 300);    /* Cosmic Lilac */
+  --secondary-foreground: oklch(0.45 0.02 300);
+  --muted: oklch(0.87 0.02 300);       /* Suave tono lila */
+  --muted-foreground: oklch(0.5 0.01 300);
+  --accent: oklch(0.82 0.08 300);      /* Lila intermedio */
+  --accent-foreground: oklch(0.45 0.02 300);
+  --destructive: oklch(0.6 0.22 25);   /* Rojo para errores */
+  --destructive-foreground: oklch(0.98 0.005 300);
+  --border: oklch(0.87 0.01 300);
+  --input: oklch(0.87 0.01 300);
+  --ring: oklch(0.7 0.05 10);
+  --chart-1: oklch(0.81 0.16 10);      /* Rose Quartz */
+  --chart-2: oklch(0.8 0.06 300);      /* Cosmic Lilac */
+  --chart-3: oklch(0.7 0.05 320);      /* intermedio visual */
+  --chart-4: oklch(0.9 0.01 300);      /* neutro claro */
+  --chart-5: oklch(0.6 0.02 300);      /* gris lavanda oscuro */
   --radius: 0.625rem;
-  --sidebar: oklch(0.98 0.05 350);
-  --sidebar-foreground: oklch(0.25 0.06 350);
-  --sidebar-primary: oklch(0.75 0.18 345);
-  --sidebar-primary-foreground: oklch(0.98 0.02 350);
-  --sidebar-accent: oklch(0.92 0.08 345);
-  --sidebar-accent-foreground: oklch(0.25 0.06 350);
-  --sidebar-border: oklch(0.9 0.04 345);
-  --sidebar-ring: oklch(0.7 0.06 345);
+  --sidebar: oklch(0.92 0.01 300);     /* Soft Shadow */
+  --sidebar-foreground: oklch(0.45 0.02 300);
+  --sidebar-primary: oklch(0.81 0.16 10);
+  --sidebar-primary-foreground: oklch(0.98 0.005 300);
+  --sidebar-accent: oklch(0.8 0.06 300);
+  --sidebar-accent-foreground: oklch(0.45 0.02 300);
+  --sidebar-border: oklch(0.87 0.01 300);
+  --sidebar-ring: oklch(0.7 0.05 10);
 }
+
+
+
+
 
 
 @theme inline {

@@ -27,7 +27,7 @@ const goToInteractive = async () => {
         </p>
       </section>
 
-      <section class="py-16 md:py-24 bg-card text-card-foreground rounded-xl shadow-lg">
+      <section class="py-16 md:py-24">
         <div class="max-w-5xl mx-auto text-center px-4">
           <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">
             {{ $t('interactive.options.title') || 'Explore Our Readings' }}</h2>

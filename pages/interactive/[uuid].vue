@@ -251,7 +251,7 @@ onMounted(async () => {
     <!-- Loaded Content -->
     <div v-else class="max-w-4xl mx-auto space-y-8">
       <!-- Input Section - Collapsible -->
-      <Card>
+      <Card class="bg-primary/5">
         <Collapsible v-model:open="isOpen" class="w-full space-y-2">
 
         <CardHeader class="pb-0">
@@ -296,7 +296,7 @@ onMounted(async () => {
 
         </Collapsible>
       </Card>
-      <Card>
+      <Card class="bg-primary/5">
         <CardHeader>
           <CardTitle class="text-xl font-runes">
             {{ readingTitle }}
@@ -316,8 +316,8 @@ onMounted(async () => {
                 <div class="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d"
                      :class="{'rotate-y-180': flippedItems[`card-${card}`]}">
                   <!-- Parte trasera -->
-                  <div class="absolute w-full h-full backface-hidden bg-card rounded-lg shadow-md border-2 border-primary flex items-center justify-center">
-                    <div class="text-primary text-4xl">🜁</div>
+                  <div class="absolute w-full h-full backface-hidden bg-secondary rounded-lg shadow-md border-2 border-card flex items-center justify-center">
+                    <div class=" text-4xl">🜁</div>
                   </div>
                   <!-- Parte frontal -->
                   <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-card rounded-lg overflow-hidden">

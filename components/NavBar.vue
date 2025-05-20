@@ -6,6 +6,7 @@ import {Button} from "~/components/ui/button";
 import {SidebarTrigger} from "~/components/ui/sidebar";
 
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/components/ui/select";
+import { themeGPT} from "~/lib/theme";
 
 const props = defineProps({
   showSidebarToggle: {
@@ -71,7 +72,7 @@ watch(selectedModel, (newModel) => {
               </SignInButton>
             </SignedOut>
             <SignedIn>
-              <UserButton show-name />
+              <UserButton show-name :appearance="themeGPT" />
             </SignedIn>
           </NavigationMenuItem>
         </NavigationMenuList>

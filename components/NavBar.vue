@@ -7,6 +7,7 @@ import {SidebarTrigger} from "~/components/ui/sidebar";
 
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "~/components/ui/select";
 import { themeGPT} from "~/lib/theme";
+import Logo from "~/components/Logo.vue";
 
 const props = defineProps({
   showSidebarToggle: {
@@ -44,7 +45,10 @@ watch(selectedModel, (newModel) => {
     <div class="flex justify-between items-center">
       <div class="flex items-center">
         <SidebarTrigger v-if="isSidebarToggleVisible" class="mr-4" />
-        <NuxtLink to="/" class="font-bold m-0 mr-4" v-if="isHomePage || isInteractivePage">GPTASTRAL</NuxtLink>
+        <NuxtLink to="/" class="font-bold m-0 mr-4 flex gap-1 items-center" v-if="isHomePage || isInteractivePage">
+          <Logo class="h-6" />
+          GPTASTRAL
+        </NuxtLink>
         <Select v-model="selectedModel" v-if="isModelSelectVisible">
           <SelectTrigger>
             <SelectValue :placeholder="selectedModel.name" />
